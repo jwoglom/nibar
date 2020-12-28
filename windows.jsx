@@ -9,7 +9,7 @@ const style = {
   padding: "0 8px",
   display: "grid",
   gridAutoFlow: "column",
-  gridGap: "16px",
+  gridGap: "20px",
   position: "fixed",
   overflow: "hidden",
   left: config.windows_offset_left,

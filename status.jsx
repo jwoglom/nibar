@@ -2,6 +2,7 @@ import DateTime from "./lib/DateTime.jsx";
 import Battery from "./lib/Battery.jsx";
 import Cpu from "./lib/Cpu.jsx";
 import Wifi from "./lib/Wifi.jsx";
+import Cgm from "./lib/Cgm.jsx";
 import Dnd from "./lib/Dnd.jsx";
 import Error from "./lib/Error.jsx";
 import parse from "./lib/parse.jsx";
@@ -15,7 +16,7 @@ const style = {
   position: "fixed",
   overflow: "hidden",
   right: "0px",
-  top: "0px",
+  bottom: "0px",
   color: styles.colors.dim,
   fontFamily: styles.fontFamily,
   fontSize: styles.fontSize,
@@ -23,7 +24,7 @@ const style = {
   fontWeight: styles.fontWeight
 };
 
-export const refreshFrequency = 10000;
+export const refreshFrequency = 5000;
 
 export const command = "./nibar/scripts/status.sh";
 
@@ -38,8 +39,9 @@ export const render = ({ output }) => {
   }
   return (
     <div style={style}>
-      <Cpu output={data.cpu} />
-      <Wifi output={data.wifi} />
+      {/*<Cpu output={data.cpu} />*/}
+      {/*<Wifi output={data.wifi} />*/}
+      <Cgm output={data.cgm} />
       <Battery output={data.battery} />
       <DateTime output={data.datetime} />
       <Dnd output={data.dnd} />

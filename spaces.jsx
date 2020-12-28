@@ -7,11 +7,11 @@ const style = {
   padding: "0 8px",
   display: "grid",
   gridAutoFlow: "column",
-  gridGap: "16px",
+  gridGap: "20px",
   position: "fixed",
   overflow: "hidden",
   left: "0px",
-  top: "0px",
+  bottom: "0px",
   fontFamily: styles.fontFamily,
   lineHeight: styles.lineHeight,
   fontSize: styles.fontSize,
@@ -24,6 +24,9 @@ export const command = "./nibar/scripts/spaces.sh";
 
 export const render = ({ output }, ...args) => {
   const data = parse(output);
+  if (typeof data === "array" && data.length == 0) {
+    return (<div>skip</div>);
+  }
   if (typeof data === "undefined") {
     return (
       <div style={style}>
