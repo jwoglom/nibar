@@ -8,7 +8,7 @@ if ! [ -x "$(command -v yabai)" ]; then
   exit 1
 fi
 
-WINDOWS=$(yabai -m query --windows --space mouse)
+WINDOWS=$(yabai -m query --windows --space mouse || echo '[]')
 
 echo $(cat <<-EOF
 {

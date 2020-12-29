@@ -49,6 +49,9 @@ const render = ({ output }) => {
       minimized++;
       return;
     }
+    if (window.app == 'Hammerspoon' && window.title == '') {
+      return;
+    }
     windows.push(renderWindow(window.app, window.focused, window.visible, window.id));
   });
 
