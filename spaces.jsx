@@ -25,7 +25,7 @@ export const command = "./nibar/scripts/spaces.sh";
 export const render = ({ output }, ...args) => {
   const data = parse(output);
   if (typeof data === "array" && data.length == 0) {
-    return (<div>skip</div>);
+    return (<div></div>);
   }
   if (typeof data === "undefined") {
     return (
@@ -43,6 +43,7 @@ export const render = ({ output }, ...args) => {
   }
   const displayId = Number(window.location.pathname.replace(/\//g, ''));
   const display = data.displays.find(d => d.id === displayId);
+
   return (
     <div style={style}>
       <Desktop output={data.spaces.filter(s => s.display === display.index)} />

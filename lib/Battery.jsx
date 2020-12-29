@@ -8,12 +8,12 @@ const render = ({ output }) => {
     <div>
       <div
         style={
-          percentage < 10 && charging == false
+          percentage < 20 && charging == false
             ? { color: styles.colors.red }
             : null
         }
       >
-        <span>{charging ? "⚡" : null} {percentage}%</span>
+        <span>{charging ? "⚡" : null} {percentage}% {remaining && remaining.length > 0 ? "("+remaining+")" : null}</span>
       </div>
     </div>
   );

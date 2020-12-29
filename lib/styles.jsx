@@ -6,7 +6,7 @@ export default {
     red: "#ff8700",
     accent: "#5fafaf"
   },
-  fontSize: "18px",
+  fontSize: "16px",
   lineHeight: "24px",
   fontWeight: 500,
   fontFamily: "'SauceCodePro Nerd Font', monospace"

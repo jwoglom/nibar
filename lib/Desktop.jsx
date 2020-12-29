@@ -30,9 +30,10 @@ const renderSpace = (index, label, focused, visible, windows) => {
   } else if (visible == 1) {
     contentStyle.color = styles.colors.fg;
   }
+
   return (
     <div style={contentStyle} onClick={() => {
-      run('/usr/local/bin/yabai -m space --focus '+index);
+      run('/usr/local/bin/yabai -m space --focus '+index).then(() => run('$WMSCRIPTS/notify_bar.sh'));
     }}>
       {focused ? "[" : <span>&nbsp;</span> }
       {name}
