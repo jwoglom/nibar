@@ -1,11 +1,12 @@
 import styles from "./styles.jsx";
+import { run } from 'uebersicht'
 
 const render = ({ output }) => {
   let charging = output.charging;
   let percentage = output.percentage;
   let remaining = output.remaining;
   return (
-    <div>
+    <div onClick={() => run('bash -c "$WMSCRIPTS/click_statusbar.sh battery"')}>
       <div
         style={
           percentage < 20 && charging == false

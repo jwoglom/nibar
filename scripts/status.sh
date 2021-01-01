@@ -2,8 +2,12 @@
 
 PATH=$PATH:/usr/local/bin/
 
+if [[ "$WMSCRIPTS" == "" ]]; then
+    export WMSCRIPTS=$(launchctl getenv WMSCRIPTS)
+fi
+
 export LC_TIME="en_US.UTF-8"
-TIME=$(date +"%H:%M")
+TIME=$(date +"%I:%M %p")
 DATE=$(date +"%a %m/%d")
 
 BATTERY_PERCENTAGE=$(pmset -g batt | egrep '([0-9]+\%).*' -o --colour=auto | cut -f1 -d'%')
@@ -28,8 +32,14 @@ fi
 
 LOAD_AVERAGE=$(sysctl -n vm.loadavg | awk '{print $2}')
 
-WIFI_STATUS=$(ifconfig en0 | grep status | cut -c 10-)
-WIFI_SSID=$(networksetup -getairportnetwork en0 | cut -c 24-)
+WIFI_INTERFACE=en0
+WIFI_ACTIVE_INTERFACE=$(route get 8.8.8.8 | grep interface | cut -c 14-)
+WIFI_STATUS=$(ifconfig $WIFI_INTERFACE | grep status | cut -c 10-)
+WIFI_SSID=$(networksetup -getairportnetwork $WIFI_INTERFACE | cut -c 24-)
+
+VPN_TUNNELBLICK=$($WMSCRIPTS/vpn_tunnelblick_status.sh)
+
+BLUETOOTH_ON=$(/usr/local/bin/blueutil -p)
 
 AUDIO_INPUT=$(SwitchAudioSource -c -t input)
 AUDIO_OUTPUT=$(SwitchAudioSource -c -t output)
@@ -59,7 +69,15 @@ echo $(cat <<-EOF
     },
     "wifi": {
         "status": "$WIFI_STATUS",
-        "ssid": "$WIFI_SSID"
+        "ssid": "$WIFI_SSID",
+        "active_interface": "$WIFI_ACTIVE_INTERFACE",
+        "wifi_interface": "$WIFI_INTERFACE"
+    },
+    "vpn": {
+        "tunnelblick": "$VPN_TUNNELBLICK"
+    },
+    "bluetooth": {
+        "on": "$BLUETOOTH_ON"
     },
     "audio": {
         "input": "$AUDIO_INPUT",

@@ -1,7 +1,12 @@
 import styles from "./lib/styles.jsx";
 
+const ontop = true;
+const transparent = true;
+const gradient = true;
+
 const style = {
-  background: styles.colors.bg,
+  background: transparent ? 
+    gradient ? "linear-gradient(to bottom, rgba(28, 28, 28, 1), rgba(28, 28, 28, 0.5) 75%, rgba(28, 28, 28, 0.25))" : "rgba(28, 28, 28, 0.5)" : styles.colors.bg,
   cursor: "default",
   userSelect: "none",
   zIndex: "-1",
@@ -9,7 +14,8 @@ const style = {
   height: "26px",
   position: "fixed",
   overflow: "hidden",
-  bottom: "0px",
+  bottom: ontop ? "none" : "0px",
+  top: ontop ? "0px" : "none",
   right: "0px",
   left: "0px"
 };
@@ -17,7 +23,7 @@ const style = {
 const css = `
 body > div#uebersicht {
   position: fixed;
-  bottom: 0;
+  ` + (ontop ? 'top' : 'bottom') + `: 0;
   left: 0;
   height: 24px;
   display: flex !important;
