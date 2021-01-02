@@ -6,7 +6,7 @@ const render = ({ output }) => {
   let percentage = output.percentage;
   let remaining = output.remaining;
   return (
-    <div onClick={() => run('bash -c "$WMSCRIPTS/click_statusbar.sh battery"')}>
+    <div style={{cursor: "pointer"}} onClick={() => run('bash -c "$WMSCRIPTS/click_statusbar.sh battery"')}>
       <div
         style={
           percentage < 20 && charging == false

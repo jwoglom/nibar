@@ -8,7 +8,8 @@ fi
 
 export LC_TIME="en_US.UTF-8"
 TIME=$(date +"%I:%M %p")
-DATE=$(date +"%a %m/%d")
+#DATE=$(date +"%a %m/%d")
+DATE=$(date +"%a")
 
 BATTERY_PERCENTAGE=$(pmset -g batt | egrep '([0-9]+\%).*' -o --colour=auto | cut -f1 -d'%')
 BATTERY_STATUS=$(pmset -g batt | grep "'.*'" | sed "s/'//g" | cut -c 18-19)
@@ -33,13 +34,14 @@ fi
 LOAD_AVERAGE=$(sysctl -n vm.loadavg | awk '{print $2}')
 
 WIFI_INTERFACE=en0
-WIFI_ACTIVE_INTERFACE=$(route get 8.8.8.8 | grep interface | cut -c 14-)
+WIFI_ACTIVE_INTERFACE=$(route get 8.8.8.8 2>/dev/null | grep interface | cut -c 14-)
 WIFI_STATUS=$(ifconfig $WIFI_INTERFACE | grep status | cut -c 10-)
 WIFI_SSID=$(networksetup -getairportnetwork $WIFI_INTERFACE | cut -c 24-)
 
 VPN_TUNNELBLICK=$($WMSCRIPTS/vpn_tunnelblick_status.sh)
 
-BLUETOOTH_ON=$(/usr/local/bin/blueutil -p)
+BLUETOOTH_ON=$(blueutil -p)
+BLUETOOTH_PAIRED=$(blueutil --paired --format json 2> /dev/null | jq 'map(select(.connected == true))' 2> /dev/null || echo '[]')
 
 AUDIO_INPUT=$(SwitchAudioSource -c -t input)
 AUDIO_OUTPUT=$(SwitchAudioSource -c -t output)
@@ -77,7 +79,8 @@ echo $(cat <<-EOF
         "tunnelblick": "$VPN_TUNNELBLICK"
     },
     "bluetooth": {
-        "on": "$BLUETOOTH_ON"
+        "on": "$BLUETOOTH_ON",
+        "paired": $BLUETOOTH_PAIRED
     },
     "audio": {
         "input": "$AUDIO_INPUT",

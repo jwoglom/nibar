@@ -32,7 +32,7 @@ const render = ({ output }) => {
   let micIcon = '🎙️';
 
   let outputIcon = speakerIcon;
-  if (matches(outputDevice, ['airpods', 'mdr-'])) {
+  if (matches(outputDevice, ['airpods', 'mdr-', 'headphone'])) {
     outputIcon = headphoneIcon;
   }
 

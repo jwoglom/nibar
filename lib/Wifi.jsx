@@ -18,8 +18,8 @@ const render = ({ output }) => {
   let style = {cursor: "pointer"};
   let innerStyle = {paddingRight: "15px"};
   if (status === "inactive") {
-    style.color = "red";
-    innerStyle = {};
+    style.opacity = 0.25;
+    innerStyle.paddingRight = "10px";
     network = null;
   }
 
