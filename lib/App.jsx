@@ -7,14 +7,13 @@ const containerStyle = {
   gridAutoFlow: "column",
   gridGap: "3px",
   position: "relative",
-  textOverflow: "ellipsis",
-  overflow: "hidden",
-  whiteSpace: "nowrap"
 };
 
 const desktopStyle = {
     maxWidth: config.windows_max_win,
     overflow: "hidden",
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap",
     cursor: "pointer"
 };
 
