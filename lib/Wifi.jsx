@@ -15,7 +15,7 @@ const render = ({ output }) => {
     network = "Wired";
   }
 
-  let style = {};
+  let style = {cursor: "pointer"};
   let innerStyle = {paddingRight: "15px"};
   if (status === "inactive") {
     style.color = "red";

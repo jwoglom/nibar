@@ -14,12 +14,13 @@ const desktopStyle = {
     cursor: "pointer"
 };
 
-
-const renderWindow = (app, focused, visible, index) => {
+const displayOnlyFocused = true;
+const renderWindow = (app, focused, visible, index, fullTitle, display) => {
   let contentStyle = JSON.parse(JSON.stringify(desktopStyle));
+  let innerStyle = {};
   if (focused == 1) {
     contentStyle.color = styles.colors.fg;
-    contentStyle.fontWeight = "bold";
+    innerStyle.fontWeight = "bold";
   } else if (visible == 1) {
     // contentStyle.color = styles.colors.fg;
   } else {
@@ -30,9 +31,13 @@ const renderWindow = (app, focused, visible, index) => {
       console.log('click from', app, index);
       run('/usr/local/bin/yabai -m window --focus '+index).then(() => run('$WMSCRIPTS/notify_bar.sh'));
     }}>
-      {focused ? "[" : <span>&nbsp;</span> }
-      {app}
-      {focused ? "]" : <span>&nbsp;</span> }
+      {focused && !displayOnlyFocused ? "[" : <span>&nbsp;</span> }
+      <span style={innerStyle}>
+        {app}
+        {displayOnlyFocused && ": "}
+      </span>
+      {displayOnlyFocused && fullTitle}
+      {focused && !displayOnlyFocused ? "]" : <span>&nbsp;</span> }
     </div>
   );
 };
@@ -52,7 +57,7 @@ const render = ({ output }) => {
     if (window.app == 'Hammerspoon' && window.title == '') {
       return;
     }
-    windows.push(renderWindow(window.app, window.focused, window.visible, window.id));
+    windows.push(renderWindow(window.app, window.focused, window.visible, window.id, window.title, window.display));
   });
 
   if (minimized > 0) {

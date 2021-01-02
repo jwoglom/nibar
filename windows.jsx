@@ -4,7 +4,6 @@ import parse from "./lib/parse.jsx";
 import styles from "./lib/styles.jsx";
 import config from "./config.json"
 
-
 const style = {
   padding: "0 8px",
   display: "grid",
