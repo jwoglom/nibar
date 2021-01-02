@@ -6,7 +6,10 @@ const containerStyle = {
   display: "grid",
   gridAutoFlow: "column",
   gridGap: "3px",
-  position: "relative"
+  position: "relative",
+  textOverflow: "ellipsis",
+  overflow: "hidden",
+  whiteSpace: "nowrap"
 };
 
 const desktopStyle = {
