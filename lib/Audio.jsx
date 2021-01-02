@@ -23,8 +23,8 @@ const render = ({ output }) => {
   style.cursor = 'pointer';
 
   let inputDevice = output.input;
-
   let outputDevice = output.output;
+  let muted = output.muted == "true";
 
   let speakerIcon = '🔊';
   let mutedIcon = '🔇';
@@ -34,6 +34,10 @@ const render = ({ output }) => {
   let outputIcon = speakerIcon;
   if (matches(outputDevice, ['airpods', 'mdr-', 'headphone'])) {
     outputIcon = headphoneIcon;
+  }
+
+  if (muted) {
+    outputIcon = mutedIcon;
   }
 
   let inputIcon = micIcon;

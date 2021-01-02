@@ -45,7 +45,7 @@ BLUETOOTH_PAIRED=$(blueutil --paired --format json 2> /dev/null | jq 'map(select
 
 AUDIO_INPUT=$(SwitchAudioSource -c -t input)
 AUDIO_OUTPUT=$(SwitchAudioSource -c -t output)
-
+AUDIO_MUTED=$(osascript -e "output muted of (get volume settings)")
 DND=$(defaults -currentHost read com.apple.notificationcenterui doNotDisturb)
 
 if [ ! -f ~/.cache/cgm.json ]; then
@@ -84,7 +84,8 @@ echo $(cat <<-EOF
     },
     "audio": {
         "input": "$AUDIO_INPUT",
-        "output": "$AUDIO_OUTPUT"
+        "output": "$AUDIO_OUTPUT",
+        "muted": "$AUDIO_MUTED"
     },
     "dnd": $DND,
     "cgm": $CGM
