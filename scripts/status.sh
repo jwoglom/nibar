@@ -43,6 +43,7 @@ WIFI_STATUS=$(ifconfig $WIFI_INTERFACE | grep status | cut -c 10-)
 WIFI_SSID=$(networksetup -getairportnetwork $WIFI_INTERFACE | cut -c 24-)
 
 VPN_TUNNELBLICK=$($WMSCRIPTS/vpn_tunnelblick_status.sh)
+VPN_PULSESECURE=$($WMSCRIPTS/vpn_pulsesecure_status.sh)
 
 BLUETOOTH_ON=$(blueutil -p)
 BLUETOOTH_PAIRED=$(blueutil --paired --format json 2> /dev/null | jq 'map(select(.connected == true))' 2> /dev/null || echo '[]')
@@ -80,7 +81,8 @@ echo $(cat <<-EOF
         "wifi_interface": "$WIFI_INTERFACE"
     },
     "vpn": {
-        "tunnelblick": "$VPN_TUNNELBLICK"
+        "tunnelblick": "$VPN_TUNNELBLICK",
+        "pulsesecure": "$VPN_PULSESECURE"
     },
     "bluetooth": {
         "on": "$BLUETOOTH_ON",

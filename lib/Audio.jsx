@@ -4,6 +4,8 @@ import { run } from 'uebersicht'
 let shorten = (name) => {
     if (matches(name, ['built-in'])) {
         return name.split(' ')[0];
+    } else if (matches(name, ['macbook pro speakers', 'macbook pro microphone'])) {
+        return 'Built-in';
     } else {
         return name;
     }
