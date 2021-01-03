@@ -6,7 +6,7 @@ const gradient = true;
 
 const style = {
   background: transparent ? 
-    gradient ? "linear-gradient(to bottom, rgba(28, 28, 28, 1), rgba(28, 28, 28, 0.5) 75%, rgba(28, 28, 28, 0.25))" : "rgba(28, 28, 28, 0.5)" : styles.colors.bg,
+    gradient ? "linear-gradient(rgb(28, 28, 28, 1), rgba(28, 28, 28, 0.75) 75%, rgba(28, 28, 28, 0.75))" : "rgba(28, 28, 28, 0.75)" : styles.colors.bg,
   cursor: "default",
   userSelect: "none",
   zIndex: "-1",
@@ -21,17 +21,19 @@ const style = {
 };
 
 const css = `
+html, body {
+  pointer-events: none !important;
+  height: 26px;
+}
+
 body > div#uebersicht {
-  position: fixed;
-  ` + (ontop ? 'top' : 'bottom') + `: 0;
-  left: 0;
-  height: 24px;
   display: flex !important;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-between;
   align-content: stretch;
   align-items: flex-start;
+  pointer-events: auto !important;
 }
 
 body > div#uebersicht > #nibar-status-jsx,
