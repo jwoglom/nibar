@@ -13,7 +13,7 @@ DATE=$(date +"%a")
 
 BATTERY_PERCENTAGE=$(pmset -g batt | egrep '([0-9]+\%).*' -o --colour=auto | cut -f1 -d'%')
 BATTERY_STATUS=$(pmset -g batt | grep "'.*'" | sed "s/'//g" | cut -c 18-19)
-BATTERY_REMAINING=$(pmset -g batt | egrep -o '([0-9]+%).*' | cut -d\  -f3)
+BATTERY_REMAINING=$(pmset -g batt | egrep -o '([0-9]+%).*' | sed 's/attached; //' | cut -d\  -f3)
 
 if [[ "$BATTERY_REMAINING" == "(no" ]]; then
     BATTERY_REMAINING=""
@@ -22,6 +22,10 @@ fi
 
 if [[ "$BATTERY_REMAINING" == "charge;" ]]; then
     BATTERY_REMAINING=""
+fi
+
+if [[ "$BATTERY_REMAINING" == "not" ]]; then
+    BATTERY_REMAINING="not charging"
 fi
 
 BATTERY_CHARGING=""

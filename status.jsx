@@ -24,7 +24,8 @@ const style = {
   fontFamily: styles.fontFamily,
   fontSize: styles.fontSize,
   lineHeight: styles.lineHeight,
-  fontWeight: styles.fontWeight
+  fontWeight: styles.fontWeight,
+  whiteSpace: "nowrap"
 };
 
 export const refreshFrequency = 30 * 1000;

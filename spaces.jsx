@@ -16,7 +16,8 @@ const style = {
   lineHeight: styles.lineHeight,
   fontSize: styles.fontSize,
   color: styles.colors.dim,
-  fontWeight: styles.fontWeight
+  fontWeight: styles.fontWeight,
+  whiteSpace: "nowrap"
 };
 
 export const refreshFrequency = false;
