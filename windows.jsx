@@ -24,7 +24,7 @@ export const refreshFrequency = false;
 export const command = "./nibar/scripts/windows.sh";
 
 export const render = ({ output }) => {
-  const data = parse(output);
+  const data = parse(output, "windows");
   if (typeof data === "undefined") {
     return (
       <div style={style}>

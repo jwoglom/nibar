@@ -26,7 +26,7 @@ export const command = "./nibar/scripts/spaces.sh";
 let prevValue = null;
 
 export const render = ({ output }, ...args) => {
-  const data = parse(output);
+  const data = parse(output, "spaces");
   if (typeof data === "undefined" && prevValue != null) {
     return prevValue;
   }

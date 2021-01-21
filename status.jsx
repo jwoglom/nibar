@@ -36,7 +36,7 @@ let outerDiv = null;
 let lastRender = null;
 
 export const render = ({ output }) => {
-  const data = parse(output);
+  const data = parse(output, "status");
   if (typeof data === "undefined") {
     if (lastRender != null) {
       return lastRender;
