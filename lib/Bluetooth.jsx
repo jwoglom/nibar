@@ -16,7 +16,7 @@ const render = ({ output }) => {
       {count > 0 && <span>
         <span style={{
             position: "absolute",
-            bottom: "0px",
+            top: "14px",
             marginLeft: "-2px",
             fontSize: "10px",
             background: "rgba(255,255,255,0.5)",
