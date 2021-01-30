@@ -49,14 +49,17 @@ export const render = ({ output }, ...args) => {
     );
   }
   const displayId = Number(window.location.pathname.replace(/\//g, ''));
+  console.log("displayId "+displayId+" "+window.location);
   const display = data.displays.find(d => d.id === displayId);
-
-  let newValue = (
-    <div style={style}>
-      <Desktop output={data.spaces.filter(s => s.display === display.index)} />
-    </div>
-  );
-  prevValue = newValue;
+  let newValue = prevValue;
+  if (display != null) {
+    newValue = (
+      <div style={style}>
+        <Desktop output={data.spaces.filter(s => s.display === display.index)} />
+      </div>
+    );
+    prevValue = newValue;
+  }
   return newValue;
 };
 

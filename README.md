@@ -1,3 +1,9 @@
+# nibar (forked)
+
+NOTE: Ubersicht should stay locked at version 1.6.66 due to a bug preventing widgets from determining what screen they are running on.
+
+This fork contains several custom widgets not included in [the original](https://github.com/kkga/nibar).
+
 # nibar
 
 Simple [Übersicht](https://github.com/felixhageloh/uebersicht) widget status bar with [yabai](https://github.com/koekeishiya/yabai) support.
