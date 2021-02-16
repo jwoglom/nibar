@@ -28,7 +28,7 @@ const style = {
   whiteSpace: "nowrap"
 };
 
-export const refreshFrequency = 30 * 1000;
+export const refreshFrequency = 15 * 1000;
 
 export const command = "./nibar/scripts/status.sh";
 
